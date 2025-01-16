@@ -45,3 +45,17 @@ export const deleteTodo: RequestHandler = async (req, res) => {
     });
   }
 };
+export const updateTodo: RequestHandler = async (req, res) => {
+  try {
+    const newTodo = await Todo.updateOne({ id: req.params.id });
+    res.status(204).json({
+      status: 'success',
+      data: newTodo,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
