@@ -63,8 +63,9 @@ const deleteTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.deleteTodo = deleteTodo;
 const updateTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newTodo = yield todo_1.Todo.updateOne({ id: req.params.id });
-        res.status(204).json({
+        const newTodo = yield todo_1.Todo.findOneAndUpdate({ id: req.params.id }, req.body);
+        console.log(newTodo);
+        res.status(202).json({
             status: 'success',
             data: newTodo,
         });

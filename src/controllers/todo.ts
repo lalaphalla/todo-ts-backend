@@ -47,8 +47,9 @@ export const deleteTodo: RequestHandler = async (req, res) => {
 };
 export const updateTodo: RequestHandler = async (req, res) => {
   try {
-    const newTodo = await Todo.updateOne({ id: req.params.id });
-    res.status(204).json({
+    const newTodo = await Todo.findOneAndUpdate({ id: req.params.id }, req.body);
+    console.log(newTodo)
+    res.status(202).json({
       status: 'success',
       data: newTodo,
     });
